@@ -1,0 +1,17 @@
+{
+  "name": "3d-roguelike",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/psqq/3d-roguelike.git",
+  "author": "psqq <pestov-sa@ya.ru>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "webpack --watch --mode development",
+    "devbuild": "webpack --mode development"
+  },
+  "dependencies": {
+    "three": "^0.114.0",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11"
+  }
+}
