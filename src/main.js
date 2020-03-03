@@ -35,7 +35,7 @@ function init() {
 
     // manager
 
-    loadObject('floor', 'models/ground.obj', 'models/ground.png', (obj) => {
+    loadObject('models/ground.obj', 'models/ground.png', (obj) => {
         objects.floor = obj;
         scene.add(obj);
     });
