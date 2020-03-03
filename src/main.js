@@ -1,5 +1,5 @@
-import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 import * as THREE from 'three';
+import { loadObject } from './load-object';
 
 var container;
 
@@ -10,11 +10,10 @@ var mouseX = 0, mouseY = 0;
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
 
-var object;
+var objects = {};
 
 init();
 animate();
-
 
 function init() {
 
@@ -36,55 +35,10 @@ function init() {
 
     // manager
 
-    function loadModel() {
-
-        object.traverse(function (child) {
-
-            if (child.isMesh) child.material.map = texture;
-
-        });
-
-        // object.position.y = -10;
-        scene.add(object);
-
-    }
-
-    var manager = new THREE.LoadingManager(loadModel);
-
-    manager.onProgress = function (item, loaded, total) {
-
-        console.log(item, loaded, total);
-
-    };
-
-    // texture
-
-    var textureLoader = new THREE.TextureLoader(manager);
-
-    var texture = textureLoader.load('models/ground.png');
-
-    // model
-
-    function onProgress(xhr) {
-
-        if (xhr.lengthComputable) {
-
-            var percentComplete = xhr.loaded / xhr.total * 100;
-            console.log('model ' + Math.round(percentComplete, 2) + '% downloaded');
-
-        }
-
-    }
-
-    function onError() { }
-
-    var loader = new OBJLoader(manager);
-
-    loader.load('models/ground.obj', function (obj) {
-
-        object = obj;
-
-    }, onProgress, onError);
+    loadObject('floor', 'models/ground.obj', 'models/ground.png', (obj) => {
+        objects.floor = obj;
+        scene.add(obj);
+    });
 
     //
 
