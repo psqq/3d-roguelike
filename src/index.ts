@@ -24,14 +24,16 @@ async function main() {
   const spritesheet = new Spritesheet("../assets/images/hero-idle.png", 32);
   const loader = new Loader();
   loader.add(spritesheet);
-  loader.registerObserver({
+  const loaderObserver = {
     update(data) {
       const percent = (data.loaded / data.total * 100).toFixed(2);
       loadingMsg.setText(`Loading... ${percent} %`);
       draw();
     }
-  });
+  };
+  loader.registerObserver(loaderObserver);
   await loader.load();
+  loader.removeObserver(loaderObserver);
   const grid = new GridWidget(3, 3);
   grid.addWidget(spritesheet.getTile(0, 0), 0, 0);
   grid.addWidget(spritesheet.getTile(1, 1), 1, 1);
