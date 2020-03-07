@@ -1,4 +1,6 @@
-export default class Tile {
+import Widget from "./Widget";
+
+export default class Tile implements Widget {
   private image: HTMLImageElement;
   private tileSize: number;
   private x: number;
@@ -8,6 +10,12 @@ export default class Tile {
     this.tileSize = tileSize;
     this.x = x;
     this.y = y;
+  }
+  getSize() {
+    return {
+      width: this.tileSize,
+      height: this.tileSize,
+    };
   }
   draw(ctx: CanvasRenderingContext2D, x: number, y: number) {
     ctx.drawImage(
