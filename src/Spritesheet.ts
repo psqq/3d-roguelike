@@ -1,6 +1,7 @@
 import Tile from "./Tile";
+import Loadable from "./Loadable";
 
-export default class Spritesheet {
+export default class Spritesheet implements Loadable {
   private filename: string;
   private tileSize: number;
   private image: HTMLImageElement;
